@@ -46,6 +46,8 @@ SELECT CONCAT([FirstName],' ', [MiddleName],' ', [LastName])
 		  [MiddleName]
 
 --TASK16
+
+GO
 CREATE VIEW [V_EmployeesSalaries]
   AS
 		(
@@ -53,8 +55,8 @@ CREATE VIEW [V_EmployeesSalaries]
 		FROM Employees
 		
 		)
+GO
 
-SELECT * FROM [V_EmployeesSalaries]
 
 --TASK17
 GO
@@ -63,3 +65,56 @@ AS (SELECT CONCAT([FirstName], ' ',[MiddleName], ' ',[LastName])
 		AS [Full Name], [JobTitle]
 		FROM Employees)
 GO
+--TASK18
+SELECT DISTINCT [JobTitle] FROM [Employees]
+ORDER BY [JobTitle]
+
+--TASK19
+SELECT TOP(10) * FROM [Projects]
+ORDER BY [StartDate],
+		 [Name]
+
+--TASK20
+SELECT TOP(7) [FirstName], [LastName], [HireDate] 
+FROM [Employees]
+ORDER BY [HireDate] DESC
+
+--TASK21
+UPDATE [Employees]
+	SET[Salary] += 0.12 * [Salary]
+	WHERE [DepartmentID] IN (1,2,4,11)
+
+SELECT [Salary] FROM [Employees]
+
+--TASK22
+
+SELECT PeakName FROM Peaks
+ORDER BY PeakName
+
+--“¿— 23
+
+USE Geography
+SELECT TOP(30) [CountryName], [Population] 
+FROM [Countries]
+WHERE [ContinentCode] = 'EU'
+ORDER BY [Population] DESC,
+		[CountryName]
+
+--TASK24
+
+SELECT [CountryName],[CountryCode],
+CASE [CurrencyCode]
+WHEN 'EUR' THEN 'Euro'
+ELSE 'Not Euro'
+END
+AS 'Currency'
+FROM Countries
+ORDER BY CountryName
+
+--TASK25
+
+USE Diablo
+
+SELECT [Name] 
+	FROM Characters
+	ORDER BY [Name] ASC
